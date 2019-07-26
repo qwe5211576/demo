@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zb.demo.dao.UserMapper">
+    <resultMap id="UserMap" type="User">
+        <id property="id" column="id"/>
+        <association property="role" javaType="Role">
+            <id property="id" column="rid"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" parameterType="User" resultMap="UserMap">
+        select *, r.id rid from smbms_user u inner join smbms_role r
+        on u.userrole = r.id
+        <where>
+            <if test="userName != null and userName !=''">
+                and username like concat('%',#{userName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

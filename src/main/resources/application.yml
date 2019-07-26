@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: SERVICE-PROVIDER
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/smbms?serverTimezone=UTC
+    username: root
+    password: ok
+  jackson:
+    date-format: yyyy-MM-dd
+
+mybatis:
+  configuration:
+    auto-mapping-behavior: full
+  type-aliases-package: com.zb.demo.entity
+  mapper-locations: classpath:mapping/*.xml
+
+
+logging:
+  level:
+    com:
+      zb:
+        sp:
+          dao:  debug
